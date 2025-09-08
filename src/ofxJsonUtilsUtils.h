@@ -2,7 +2,6 @@
 
 #include "ofxJsonUtils.h"
 
-#define EXPAND(x) x
 #define kv1(name) #name, name
 #define kv2(name, ...) kv(name), kv1(__VA_ARGS__)
 #define kv3(name, ...) kv(name), kv2(__VA_ARGS__)
@@ -16,8 +15,8 @@
 #define KV_COMMA_SEPARATION(...) GET_MACRO(__VA_ARGS__, kv9, kv8, kv7, kv6, kv5, kv4, kv3, kv2, kv1)(__VA_ARGS__)
 
 #define JSON_FUNCS(...) \
-void loadJson(const ofJson &json) { ofxJsonUtils::load(json, EXPAND(KV_COMMA_SEPARATION(__VA_ARGS__))); } \
-ofJson toJson() const { return ofxJsonUtils::create(EXPAND(KV_COMMA_SEPARATION(__VA_ARGS__))); }
+void loadJson(const ofJson &json) {ofxJsonUtils::load(json, KV_COMMA_SEPARATION(__VA_ARGS__));}\
+ofJson toJson() const { return ofxJsonUtils::create(KV_COMMA_SEPARATION(__VA_ARGS__));}
 
 // WORKAROUNDS for MSVC below:
 
